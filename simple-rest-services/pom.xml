@@ -41,6 +41,7 @@
 			<scope>test</scope>
 		</dependency>
 
+	<!-- actuator is helpful in monitor and manage application like auditing, health, metrics -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -52,6 +53,7 @@
 			<artifactId>spring-data-rest-hal-browser</artifactId>
 		</dependency>
 
+<!--  Without restarting server changes will reflect automatically  -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>

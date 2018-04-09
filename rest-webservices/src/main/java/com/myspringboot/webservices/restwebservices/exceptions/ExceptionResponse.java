@@ -6,7 +6,9 @@ import java.util.Date;
  * 
  * @author srini
  *
- *This class is used for common exception response messages
+ *This class is used for common exception response messages.
+ *
+ *It will be common standard for all exceptions responses
  */
 
 

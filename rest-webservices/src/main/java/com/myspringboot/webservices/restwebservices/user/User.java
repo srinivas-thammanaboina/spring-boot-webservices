@@ -2,7 +2,7 @@ package com.myspringboot.webservices.restwebservices.user;
 
 import java.util.Date;
 
-public class User {
+public class User{
 
 	private Integer id;
 	private String name;
@@ -39,6 +39,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", birthday=" + birthday + "]";
 	}
+	
 	
 	
 }

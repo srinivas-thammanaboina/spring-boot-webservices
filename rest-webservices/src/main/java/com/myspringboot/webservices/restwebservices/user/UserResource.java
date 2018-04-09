@@ -1,11 +1,17 @@
 package com.myspringboot.webservices.restwebservices.user;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import java.net.URI;
+
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,18 +37,27 @@ public class UserResource {
 	}
 	
 	@GetMapping("/users/{id}")
-	public User getUser(@PathVariable int id) {
+	public Resource<User> getUser(@PathVariable int id) {
 		
 		User user = userService.getUser(id);
 		
 		if(user==null) {
 			throw new UserNotFoundException("not found id-"+id);
 		}
-		return userService.getUser(id);
+		//input - details of the user
+		//output - created & return the created URI
+		
+		// HATEOAS
+		Resource<User> resource = new Resource<User>(user);
+		
+		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+
+		resource.add(linkTo.withRel("all-users"));
+
+		return resource;
+		
 	}
 	
-	//input - details of the user
-	//output - created & return the created URI
 	
 	// @valid - java validation api having its default implementation
 	@PostMapping("/users")
